@@ -20,9 +20,6 @@ death_cancer = simulated_data |>
 ggplot(death_cancer, aes(x = Cancer_Type)) +
   geom_bar() 
 
-death_patient = simulated_data |>
-  filter(Consequence == 1)
-  
 cancer_model =
   stan_glm(
   formula = Consequence ~ cancer_type, #+ age_group + gender,
@@ -30,8 +27,10 @@ cancer_model =
   family = binomial(link = "logit"),
   prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
   prior_intercept = normal(location = 0, scale = 2.5, autoscale = TRUE),
-  seed = 1
+  seed = 100241
 )
+
+# Above model is not working because of the length of variables differs
 
 saveRDS(cancer_model, "model/cancer_model.RDS")
 
