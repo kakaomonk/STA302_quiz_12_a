@@ -1,12 +1,9 @@
 #### Preamble ####
-# Purpose: Simulates 
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Simulates cancer data
+# Author: Hyungsoo Park
+# Date: 04 April 2024
+# Contact: hyungsoo.park@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
-
 
 #### Workspace setup ####
 library(tidyverse)
@@ -15,7 +12,7 @@ library(arrow)
 gender = c("Male", "Female")
 age_group = c("0~19", "20~39", "40~59", "60~79", "80~99")
 cancer_type = c("Breast", "Liver", "Lung", "Colon", "Pancreas", "Skin", "Other")
-consequence = c("Recovered", "Death")
+consequence = c(0, 1) # 0 means recovered, and 1 means death
 hospital = c("Westmead Hospital ",
              "Concord Repatriation General Hospital",
              "Sydney Adventist Hospital",
@@ -38,5 +35,5 @@ simulate_cancer = tibble(
   Hospital = sample(hospital,num_sim, replace = TRUE)
 )
 
-
+write.csv(simulate_cancer, "data/cancer_simulation.csv")
 
